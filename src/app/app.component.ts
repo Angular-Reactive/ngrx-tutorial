@@ -1,3 +1,6 @@
+/**
+ * The actions live to be dispatched.
+ */
 import { Component } from '@angular/core';
 
 @Component({
