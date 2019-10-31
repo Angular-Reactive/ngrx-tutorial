@@ -1,19 +1,16 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer
-} from '@ngrx/store';
-import { environment } from '../../../environments/environment';
+import {ActionReducerMap, MetaReducer} from '@ngrx/store';
+import {environment} from '../../../environments/environment';
+import * as fromAuth from './auth.reducer';
 
 
 export interface State {
 
+  [fromAuth.authFeatureKey]: fromAuth.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
 
+  [fromAuth.authFeatureKey]: fromAuth.reducer,
 };
 
 
