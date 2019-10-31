@@ -47,9 +47,16 @@ export class AuthEffects {
   loadAuths$: Observable<Action> = this.actions$.pipe(
     ofType(authActions.AuthActionTypes.LoadAuths),
     switchMap(() => {
-      return this.http.get<string>('login').pipe(
-        map((userName) => {
-          return new authActions.SetAuths(userName);
+      return this.http.get<string>(`https://swapi.co/api/people/1`).pipe(
+        map((person: Object) => {
+          const json = JSON.stringify(person);
+          console.log(person);
+          /***/
+          const name: string = JSON.parse(json).name;
+          return new authActions.SetAuths({
+            userName: name.replace(' ', ''),
+            friendlyName: name
+          });
         })
       );
     })
